@@ -7,13 +7,9 @@
         </v-row>
       </v-col>
       <v-col cols="md-10">
-        <v-card-subtitle>maryu@warble</v-card-subtitle>
-        <v-card-text>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum ducimus
-          accusantium libero minima porro quia aliquammaxime? Dignissimos
-          laudantium ipsa porro cumque culpa sapiente libero dolore provident
-          aut perspiciatis animi vitae sunt distinctio, quo vel laborum minus
-          aspernatur
+        <v-card-subtitle class="pa-1">maryu@warble</v-card-subtitle>
+        <v-card-text class="pa-1">
+          {{ post.text }}
         </v-card-text>
         <v-spacer></v-spacer>
         <v-card-actions>
@@ -33,3 +29,14 @@
     <v-divider />
   </v-card>
 </template>
+
+<script>
+export default {
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    },
+  },
+}
+</script>
