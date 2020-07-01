@@ -1,7 +1,13 @@
 <template>
-  <v-card>
+  <v-card class="pa-3">
+    <v-text-field
+      v-model="newPost"
+      placeholder="What’s happening?"
+      append-icon="mdi-send"
+      @click:append="addPost"
+    ></v-text-field>
     <v-card-title>Notifications</v-card-title>
-    <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+    <v-tabs v-model="tab" background-color="transparent" grow>
       <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
     </v-tabs>
 
@@ -14,6 +20,7 @@
 </template>
 
 <script>
+import { db } from '~/plugins/firebase'
 import post from '~/components/post.vue'
 export default {
   components: { post },
@@ -28,17 +35,35 @@ export default {
     return {
       tab: null,
       items: ['All', 'Mentions'],
-      text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      newPost: '',
     }
   },
   computed: {
-    scrollItem() {
-      return Array.from({ length: this.length }, (k, v) => v + 1)
+    user() {
+      return this.$store.state.user
     },
-    length() {
-      return 1000
+  },
+  methods: {
+    addPost() {
+      const field = db
+        .collection('posts')
+        .doc('6jdKyY5AvuUy2SsRPPzX')
+        .collection('post')
+      field
+        .add({
+          text: this.newPost,
+          createdAt: new Date().getTime(),
+          user: {
+            name: this.user.displayName,
+            thumbnail: this.user.photoURL,
+          },
+        })
+        .then(() => {
+          this.newPost = null
+        })
     },
   },
 }
 </script>
+
+<style></style>

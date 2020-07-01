@@ -1,13 +1,5 @@
 <template>
-  <v-container>
-    <v-text-field
-      v-model="newPost"
-      placeholder="What’s happening?"
-      append-icon="mdi-send"
-      @click:append="addPost"
-    ></v-text-field>
-    <timeline :posts="posts" />
-  </v-container>
+  <timeline :posts="posts" />
 </template>
 
 <script>
@@ -17,9 +9,13 @@ export default {
   components: { timeline },
   data() {
     return {
-      newPost: '',
       posts: [],
     }
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated
+    },
   },
   mounted() {
     db.collection('posts')
@@ -37,21 +33,7 @@ export default {
         console.log(this.posts)
       })
   },
-  methods: {
-    addPost() {
-      const field = db
-        .collection('posts')
-        .doc('6jdKyY5AvuUy2SsRPPzX')
-        .collection('post')
-      field
-        .add({
-          text: this.newPost,
-          createdAt: new Date().getTime(),
-        })
-        .then(() => {
-          this.newPost = null
-        })
-    },
-  },
 }
 </script>
+
+<style scoped></style>

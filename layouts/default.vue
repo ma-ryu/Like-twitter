@@ -1,21 +1,22 @@
 <template>
   <v-app dark>
-    <v-content>
+    <main>
       <v-row justify="center">
-        <v-col cols="md-2">
+        <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="2">
           <userNav />
         </v-col>
-        <v-col cols="md-5">
+        <v-col cols="12" md="6">
           <v-container>
             <nuxt />
           </v-container>
         </v-col>
-        <v-col cols="md-3">
+        <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="3">
           <sidebar />
         </v-col>
       </v-row>
-    </v-content>
-    <v-footer :absolute="!fixed" app>
+      <bottomNav v-if="$vuetify.breakpoint.smAndDown" />
+    </main>
+    <v-footer absolute app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -24,14 +25,16 @@
 <script>
 import userNav from '~/components/userNav.vue'
 import sidebar from '~/components/sidebar.vue'
+import bottomNav from '~/components/bottomNav.vue'
 export default {
-  components: { userNav, sidebar },
-  data() {
-    return {
-      fixed: false,
-    }
-  },
+  components: { userNav, sidebar, bottomNav },
+  middleware: 'authenticated',
 }
 </script>
 
-<style></style>
+<style>
+main {
+  height: 100vh;
+  overflow: scroll;
+}
+</style>

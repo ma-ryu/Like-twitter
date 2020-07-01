@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar ma-5">
+  <div class="sidebar ma-3">
     <v-text-field
       prepend-inner-icon="mdi-magnify"
       placeholder="search twitter..."
@@ -7,7 +7,7 @@
       rounded
       dense
     ></v-text-field>
-    <v-card class="mx-auto mb-3">
+    <v-card width="100%" class="mx-auto mb-3">
       <v-list rounded>
         <v-subheader>REPORTS</v-subheader>
         <v-list-item-group color="primary">
@@ -22,7 +22,7 @@
         </v-list-item-group>
       </v-list>
     </v-card>
-    <v-card class="mx-auto">
+    <v-card width="100%" class="mx-auto">
       <v-list rounded>
         <v-subheader>REPORTS</v-subheader>
         <v-list-item-group color="primary">
@@ -57,3 +57,14 @@ export default {
   },
 }
 </script>
+
+<style>
+.sidebar {
+  position: fixed;
+  width: 20%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style>

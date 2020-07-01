@@ -1,16 +1,15 @@
 <template>
-  <v-card color="basil" flat>
-    <v-row justify="center">
-      <v-col cols="md-1" class="pt-10">
-        <v-row justify="center">
-          <v-icon>mdi-account</v-icon>
-        </v-row>
+  <v-card>
+    <v-row justify="center" class="mx-0">
+      <v-col cols="2" class="pa-2 pt-4 d-flex justify-center">
+        <v-avatar v-if="post.user" size="48px">
+          <v-img :src="post.user.thumbnail" contain />
+        </v-avatar>
+        <v-icon v-else>mdi-account</v-icon>
       </v-col>
-      <v-col cols="md-10">
-        <v-card-subtitle class="pa-1">maryu@warble</v-card-subtitle>
-        <v-card-text class="pa-1">
-          {{ post.text }}
-        </v-card-text>
+      <v-col cols="10" class="pa-2">
+        <v-card-subtitle class="pa-1">{{ post.user.name }}</v-card-subtitle>
+        <v-card-text class="pa-1">{{ post.text }}</v-card-text>
         <v-spacer></v-spacer>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -26,7 +25,7 @@
         </v-card-actions>
       </v-col>
     </v-row>
-    <v-divider />
+    <v-divider></v-divider>
   </v-card>
 </template>
 
