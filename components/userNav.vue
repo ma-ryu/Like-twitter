@@ -46,6 +46,7 @@
 
       <v-list>
         <v-list-item>
+          <!-- TODO ユーザー画面を作成する。 -->
           <v-list-item-title>
             <v-icon>mdi-account</v-icon>
             {{ user.displayName }}

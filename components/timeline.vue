@@ -1,11 +1,14 @@
 <template>
   <v-card class="pa-3">
+    <!-- TODO ツイート機能はモバイルではボトムナビで表示(daialogを使う)-->
     <v-text-field
       v-model="newPost"
       placeholder="What’s happening?"
       append-icon="mdi-send"
       @click:append="addPost"
     ></v-text-field>
+    <!-- TODO firebase storageにアップする機能を実装 -->
+    <!-- TODO postデータに画像を含める。 選んだ画像はプレビューできる  -->
     <label>
       <v-icon>mdi-camera</v-icon>
       <input type="file" class="file" @click="fileUp" />
