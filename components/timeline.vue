@@ -6,6 +6,10 @@
       append-icon="mdi-send"
       @click:append="addPost"
     ></v-text-field>
+    <label>
+      <v-icon>mdi-camera</v-icon>
+      <input type="file" class="file" @click="fileUp" />
+    </label>
     <v-card-title>Notifications</v-card-title>
     <v-tabs v-model="tab" background-color="transparent" grow>
       <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
@@ -62,8 +66,15 @@ export default {
           this.newPost = null
         })
     },
+    fileUp() {
+      window.alert('ファイルをアップします。')
+    },
   },
 }
 </script>
 
-<style></style>
+<style>
+.file {
+  display: none;
+}
+</style>
