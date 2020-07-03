@@ -21,7 +21,7 @@
         </v-card-title>
         <v-card-text>
           <v-container>
-            <add-post />
+            <add-post @closeDialog="close" />
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -43,6 +43,11 @@ export default {
     return {
       dialog: false,
     }
+  },
+  methods: {
+    close() {
+      this.dialog = false
+    },
   },
 }
 </script>

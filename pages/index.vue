@@ -25,8 +25,9 @@ export default {
       .onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
           const doc = change.doc
+          console.log(doc.data())
           if (change.type === 'added') {
-            this.posts.unshift({ id: doc.id, ...doc.data() })
+            this.posts.push({ id: doc.id, ...doc.data() })
           }
         })
         // eslint-disable-next-line no-console

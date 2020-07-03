@@ -17,7 +17,27 @@
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
-      <v-btn rounded width="100%" class="pa-5 mb-5">Tweet</v-btn>
+      <v-btn rounded width="100%" class="pa-5 mb-5" @click="dialog = !dialog">
+        Tweet
+      </v-btn>
+      <v-dialog v-model="dialog" max-width="600px">
+        <v-card color="blue-grey darken-4">
+          <v-card-title>
+            <span class="headline">Your warble</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <add-post :dialog="dialog" />
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" text @click="dialog = false"
+              >Close</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
       <v-btn
         v-if="!isAuthenticated"
         rounded
@@ -53,11 +73,9 @@
           </v-list-item-title>
         </v-list-item>
         <v-list-item>
-          <v-list-item-title>Add existing acount</v-list-item-title>
-        </v-list-item>
-        <v-list-item>
           <v-btn
             v-if="$store.getters.isAuthenticated"
+            color="secondary"
             rounded
             width="100%"
             class="pa-5 mb-5"
@@ -73,8 +91,10 @@
 <script>
 import { mapActions } from 'vuex'
 import { firebase } from '~/plugins/firebase'
+import addPost from '~/components/addPost.vue'
 
 export default {
+  components: { addPost },
   data() {
     return {
       fixed: false,
@@ -83,6 +103,7 @@ export default {
         { text: 'HOME', icon: 'mdi-home', to: '/' },
         { text: 'Profile', icon: 'mdi-account', to: '/account' },
       ],
+      dialog: false,
     }
   },
   computed: {

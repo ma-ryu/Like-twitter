@@ -5,17 +5,16 @@
       placeholder="What’s happening?"
       auto-grow
       rows="3"
-      :rules="[limit]"
       outlined
     ></v-textarea>
     <v-img
-      v-if="uploadImageUrl"
-      :src="uploadImageUrl"
+      v-if="previewImageUrl"
+      :src="previewImageUrl"
       contain
       width="100%"
       max-height="300px"
     />
-    <v-divider v-show="uploadImageUrl" class="my-5"></v-divider>
+    <v-divider v-show="previewImageUrl" class="my-5"></v-divider>
     <v-row class="px-10">
       <v-file-input
         v-model="file"
@@ -33,15 +32,21 @@
 </template>
 
 <script>
-import { db } from '~/plugins/firebase'
+// import { db } from '~/plugins/firebase'
 export default {
+  props: {
+    dialog: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+  },
   data() {
     return {
       newPost: '',
       file: null,
-      imageUrl: null,
-      uploadImageUrl: '',
-      limit: (value) => value.length <= 140 || '140文字以内', // 文字数の制約
+      fileName: '',
+      previewImageUrl: '',
     }
   },
   computed: {
@@ -58,29 +63,49 @@ export default {
         const FileRead = new FileReader()
         FileRead.readAsDataURL(file)
         FileRead.addEventListener('load', () => {
-          this.uploadImageUrl = FileRead.result
+          this.previewImageUrl = FileRead.result
         })
+        this.fileName = this.file.name
       } else {
-        this.uploadImageUrl = ''
+        this.previewImageUrl = ''
       }
     },
-    addPost() {
-      const field = db
-        .collection('posts')
-        .doc('6jdKyY5AvuUy2SsRPPzX')
-        .collection('post')
-      field
-        .add({
+    async addPost() {
+      // const field = db
+      //   .collection('posts')
+      //   .doc('6jdKyY5AvuUy2SsRPPzX')
+      //   .collection('post')
+      // field
+      //   .add({
+      //     text: this.newPost,
+      //     createdAt: new Date().getTime(),
+      //     user: {
+      //       name: this.user.displayName,
+      //       thumbnail: this.user.photoURL,
+      //     },
+      //   })
+      //   .then(() => {
+      //     this.newPost = null
+      //   })
+      const contents = {
+        createdAt: new Date().getTime(),
+        message: {
           text: this.newPost,
-          createdAt: new Date().getTime(),
           user: {
             name: this.user.displayName,
             thumbnail: this.user.photoURL,
           },
-        })
-        .then(() => {
-          this.newPost = null
-        })
+        },
+        image: {
+          file: this.file,
+          name: this.fileName,
+        },
+      }
+      await this.$store.dispatch('addPost', contents).then(() => {
+        this.newPost = null
+        this.$emit('closeDialog')
+      })
+      console.log('load finish') // dataをclearにする
     },
   },
 }
