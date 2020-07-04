@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-user ma-3">
+  <div class="sidebar-user ma-2">
     <v-list rounded class="mb-3">
       <v-subheader>REPORTS</v-subheader>
       <v-list-item-group color="primary">
@@ -152,7 +152,7 @@ export default {
 <style>
 .sidebar-user {
   position: fixed;
-  width: 15%;
+  width: 13%;
   height: 90vh;
   display: flex;
   flex-direction: column;

@@ -71,22 +71,6 @@ export default {
       }
     },
     async addPost() {
-      // const field = db
-      //   .collection('posts')
-      //   .doc('6jdKyY5AvuUy2SsRPPzX')
-      //   .collection('post')
-      // field
-      //   .add({
-      //     text: this.newPost,
-      //     createdAt: new Date().getTime(),
-      //     user: {
-      //       name: this.user.displayName,
-      //       thumbnail: this.user.photoURL,
-      //     },
-      //   })
-      //   .then(() => {
-      //     this.newPost = null
-      //   })
       const contents = {
         createdAt: new Date().getTime(),
         message: {
@@ -105,7 +89,7 @@ export default {
         this.newPost = null
         this.$emit('closeDialog')
       })
-      console.log('load finish') // dataをclearにする
+      console.log('finish')
     },
   },
 }

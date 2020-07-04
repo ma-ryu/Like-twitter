@@ -5,10 +5,10 @@
         <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="2">
           <userNav />
         </v-col>
-        <v-col cols="12" md="6">
-          <v-container>
+        <v-col cols="12" md="6" class="px-0">
+          <div>
             <nuxt />
-          </v-container>
+          </div>
         </v-col>
         <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="3">
           <sidebar />

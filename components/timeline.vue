@@ -1,8 +1,5 @@
 <template>
-  <v-card class="pa-3">
-    <!-- TODO ツイート機能はモバイルではボトムナビで表示(daialogを使う)-->
-    <!-- TODO firebase storageにアップする機能を実装 -->
-    <!-- TODO postデータに画像を含める。 選んだ画像はプレビューできる  -->
+  <v-card class="pa-5">
     <addPost v-if="$vuetify.breakpoint.mdAndUp" />
     <v-card-title>Notifications</v-card-title>
     <v-tabs v-model="tab" background-color="transparent" grow>

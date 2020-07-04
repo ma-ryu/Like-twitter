@@ -1,4 +1,8 @@
 <template>
+  <!-- TODO ユーザーページ -->
+  <!-- TODO フォロー機能 -->
+  <!-- TODO お気に入り機能 -->
+  <!-- TODO 自分だけのタイムライン -->
   <timeline :posts="posts" />
 </template>
 
@@ -25,6 +29,7 @@ export default {
       .onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
           const doc = change.doc
+          // eslint-disable-next-line no-console
           console.log(doc.data())
           if (change.type === 'added') {
             this.posts.push({ id: doc.id, ...doc.data() })
