@@ -16,23 +16,19 @@ export default {
       posts: [],
     }
   },
-  computed: {
-    isAuthenticated() {
-      return this.$store.getters.isAuthenticated
-    },
-  },
   mounted() {
     db.collection('posts')
       .doc('6jdKyY5AvuUy2SsRPPzX')
       .collection('post')
-      .orderBy('createdAt', 'desc')
+      .orderBy('createdAt')
       .onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
           const doc = change.doc
-          // eslint-disable-next-line no-console
-          console.log(doc.data())
           if (change.type === 'added') {
-            this.posts.push({ id: doc.id, ...doc.data() })
+            this.posts.unshift({ id: doc.id, ...doc.data() })
+          }
+          if (change.type === 'removed') {
+            this.posts.splice(doc.id, 1)
           }
         })
         // eslint-disable-next-line no-console

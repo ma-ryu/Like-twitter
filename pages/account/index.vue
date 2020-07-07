@@ -11,7 +11,7 @@
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
 
-        <v-toolbar-title>@{{ user.displayName }}</v-toolbar-title>
+        <v-toolbar-title>{{ displayName }}</v-toolbar-title>
 
         <v-spacer></v-spacer>
       </v-toolbar>
@@ -19,13 +19,26 @@
     <v-card class="pa-5">
       <div>
         <v-img src="http://via.placeholder.com/350x150"></v-img>
-        <v-avatar size="96" class="position">
-          <v-img :src="user.photoURL"></v-img>
-        </v-avatar>
+        <v-row justify="space-between" class="my-3">
+          <v-avatar size="96" class="position">
+            <v-img :src="user.photoURL"></v-img>
+          </v-avatar>
+          <!-- <v-btn
+            rounded
+            class="mr-5"
+            :color="isFollow ? 'primary' : 'default'"
+            @click="followUser"
+          >
+            {{ follow }}
+          </v-btn> -->
+          <v-btn outlined small class="mr-5" @click="dialog = !dialog">
+            EDIT PROFILE
+          </v-btn>
+        </v-row>
       </div>
+
       <v-row justify="space-between" class="pa-5">
-        {{ user.displayName }}
-        <v-btn outlined @click="dialog = !dialog">EDIT PROFILE</v-btn>
+        {{ displayName }}
       </v-row>
       <v-dialog v-model="dialog" max-width="600px">
         <v-card color="blue-grey darken-4">
@@ -43,7 +56,15 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-card-text v-model="profile">{{ profile }}</v-card-text>
+      <v-card-text v-model="profile" class="pa-2">{{ profile }}</v-card-text>
+      <v-card-actions>
+        <v-btn text x-small class="text-capitalize">
+          {{ following }} <span class="grey--text ml-1">Following</span>
+        </v-btn>
+        <v-btn text x-small class="text-capitalize">
+          {{ follower }} <span class="grey--text ml-1">Followers</span>
+        </v-btn>
+      </v-card-actions>
       <v-tabs v-model="tab" background-color="transparent" grow>
         <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
       </v-tabs>
@@ -64,11 +85,28 @@ export default {
       dialog: false,
       profile:
         'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem quaeexercitationem suscipit! Illum delectus iure accusantium vel remdoloremenim.',
+      isFollow: false,
+      follow: 'Follow',
+      following: 1000,
+      follower: 1200,
     }
   },
   computed: {
     user() {
       return this.$store.state.user
+    },
+    displayName() {
+      return `@${this.user.displayName}`
+    },
+  },
+  methods: {
+    followUser() {
+      this.isFollow = !this.isFollow
+      if (this.isFollow) {
+        this.follow = 'Following'
+      } else {
+        this.follow = 'Follow'
+      }
     },
   },
 }

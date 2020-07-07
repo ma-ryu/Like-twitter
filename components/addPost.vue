@@ -34,7 +34,7 @@
 <script>
 // import { db } from '~/plugins/firebase'
 export default {
-  props: {
+  prop: {
     dialog: {
       type: Boolean,
       required: true,
