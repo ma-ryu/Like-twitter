@@ -7,7 +7,7 @@
   <div>
     <v-row>
       <v-toolbar class="px-5">
-        <v-btn icon>
+        <v-btn icon to="/">
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
 
@@ -18,7 +18,7 @@
     </v-row>
     <v-card class="pa-5">
       <div>
-        <v-img src="http://via.placeholder.com/350x150"></v-img>
+        <v-img src="https://picsum.photos/400/200"></v-img>
         <v-row justify="space-between" class="my-3">
           <v-avatar size="96" class="position">
             <v-img :src="user.photoURL"></v-img>
@@ -115,7 +115,7 @@ export default {
 <style>
 .position {
   z-index: 99;
-  margin-top: -50px;
+  margin-top: -60px;
   margin-left: 20px;
 }
 </style>

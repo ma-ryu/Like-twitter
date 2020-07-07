@@ -23,7 +23,7 @@
         <v-spacer></v-spacer>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn icon>
+          <v-btn icon :color="isLike ? 'pink' : 'default'" @click="like">
             <v-icon>mdi-heart</v-icon>
           </v-btn>
           <v-btn icon>
@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       dialog: false,
+      isLike: false,
     }
   },
   methods: {
@@ -78,6 +79,9 @@ export default {
         .collection('post')
         .doc(postId)
         .delete()
+    },
+    like() {
+      this.isLike = !this.isLike
     },
   },
 }
