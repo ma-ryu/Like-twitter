@@ -1,5 +1,6 @@
 <template>
   <!--  リプライ機能をつける -->
+  <!--  処理をストアに移動 -->
   <v-card>
     <v-row justify="center" class="mx-0">
       <v-col cols="2" class="pa-2 pt-4 d-flex justify-center">

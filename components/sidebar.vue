@@ -1,4 +1,7 @@
 <template>
+  <!-- TODO 内容を精査 -->
+  <!-- TODO warble検索 -->
+  <!-- TODO warble検索 -->
   <div class="sidebar ma-3">
     <v-text-field
       prepend-inner-icon="mdi-magnify"

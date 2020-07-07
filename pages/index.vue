@@ -1,7 +1,4 @@
 <template>
-  <!-- TODO ユーザーページ -->
-  <!-- TODO フォロー機能 -->
-  <!-- TODO お気に入り機能 -->
   <!-- TODO 自分だけのタイムライン -->
   <timeline :posts="posts" />
 </template>

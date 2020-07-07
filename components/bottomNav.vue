@@ -1,4 +1,6 @@
 <template>
+  <!-- TODO ナビゲーションにwarble検索を追加 -->
+  <!-- TODO postをボトムナビゲーションからフローティングボタンに変更 -->
   <v-bottom-navigation dark shift fixed>
     <v-btn to="/">
       <span>HOME</span>
