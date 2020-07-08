@@ -1,21 +1,17 @@
 <template>
   <!-- TODO ユーザーprofileのデーターベース登録 -->
-  <!-- TODO ユーザーポストのレンダリング -->
-  <!-- TODO 投稿に画像があるものだけ表示するタブを作成 -->
   <!-- TODO いいね機能 -->
   <!-- TODO フォロー機能 -->
   <div>
-    <v-row>
-      <v-toolbar class="px-5">
-        <v-btn icon to="/">
-          <v-icon>mdi-arrow-left</v-icon>
-        </v-btn>
+    <v-toolbar class="px-5">
+      <v-btn icon to="/">
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
 
-        <v-toolbar-title>{{ displayName }}</v-toolbar-title>
+      <v-toolbar-title>{{ displayName }}</v-toolbar-title>
 
-        <v-spacer></v-spacer>
-      </v-toolbar>
-    </v-row>
+      <v-spacer></v-spacer>
+    </v-toolbar>
     <v-card class="pa-5">
       <div>
         <v-img src="https://picsum.photos/400/200"></v-img>
@@ -65,31 +61,19 @@
           {{ follower }} <span class="grey--text ml-1">Followers</span>
         </v-btn>
       </v-card-actions>
-      <v-tabs v-model="tab" background-color="transparent" grow>
-        <v-tab>WARBLES</v-tab>
-        <v-tab>MEDIA</v-tab>
-      </v-tabs>
-
-      <v-tabs-items v-model="tab" class="timeline">
-        <v-tab-item>
-          <post v-for="post in myPosts" :key="post.id" :post="post" />
-        </v-tab-item>
-        <v-tab-item>
-          <post v-for="post in myMedia" :key="post.id" :post="post" />
-        </v-tab-item>
-      </v-tabs-items>
+      <myTimeline :posts="myPosts" />
     </v-card>
   </div>
 </template>
 
 <script>
 import { db } from '~/plugins/firebase'
+import myTimeline from '~/components/myTimeline.vue'
 export default {
+  components: { myTimeline },
   data() {
     return {
       myPosts: [],
-      tab: null,
-      items: ['WARBLES', 'MEDIA'],
       dialog: false,
       profile:
         'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem quaeexercitationem suscipit! Illum delectus iure accusantium vel remdoloremenim.',
@@ -105,9 +89,6 @@ export default {
     },
     displayName() {
       return `@${this.user.displayName}`
-    },
-    myMedia() {
-      return this.myPosts.filter((v) => v.image.name != null)
     },
   },
   mounted() {
