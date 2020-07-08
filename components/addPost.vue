@@ -72,13 +72,14 @@ export default {
     },
     async addPost() {
       const contents = {
+        user: {
+          id: this.user.uid,
+          name: this.user.displayName,
+          thumbnail: this.user.photoURL,
+        },
         createdAt: new Date().getTime(),
         message: {
           text: this.newPost,
-          user: {
-            name: this.user.displayName,
-            thumbnail: this.user.photoURL,
-          },
         },
         image: {
           file: this.file,

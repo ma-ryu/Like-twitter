@@ -66,20 +66,25 @@
         </v-btn>
       </v-card-actions>
       <v-tabs v-model="tab" background-color="transparent" grow>
-        <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
+        <v-tab>WARBLES</v-tab>
+        <v-tab>MEDIA</v-tab>
       </v-tabs>
 
       <v-tabs-items v-model="tab" class="timeline">
-        <v-tab-item v-for="item in items" :key="item"></v-tab-item>
+        <v-tab-item>
+          <post v-for="post in myPosts" :key="post.id" :post="post" />
+        </v-tab-item>
       </v-tabs-items>
     </v-card>
   </div>
 </template>
 
 <script>
+import { db } from '~/plugins/firebase'
 export default {
   data() {
     return {
+      myPosts: [],
       tab: null,
       items: ['WARBLES', 'MEDIA'],
       dialog: false,
@@ -98,6 +103,25 @@ export default {
     displayName() {
       return `@${this.user.displayName}`
     },
+  },
+  mounted() {
+    db.collection('posts')
+      .doc('6jdKyY5AvuUy2SsRPPzX')
+      .collection('post')
+      .where('user.id', '==', this.user.uid)
+      .onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          const doc = change.doc
+          if (change.type === 'added') {
+            this.myPosts.unshift({ id: doc.id, ...doc.data() })
+          }
+          if (change.type === 'removed') {
+            this.myPosts.splice(doc.id, 1)
+          }
+        })
+        // eslint-disable-next-line no-console
+        console.log(this.myPosts)
+      })
   },
   methods: {
     followUser() {

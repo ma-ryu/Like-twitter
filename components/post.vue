@@ -4,15 +4,15 @@
   <v-card>
     <v-row justify="center" class="mx-0">
       <v-col cols="2" class="pa-2 pt-4 d-flex justify-center">
-        <v-avatar v-if="post.message.user.name" size="48px">
-          <v-img :src="post.message.user.thumbnail" contain />
+        <v-avatar v-if="post.user.name" size="48px">
+          <v-img :src="post.user.thumbnail" contain />
         </v-avatar>
         <v-icon v-else>mdi-account</v-icon>
       </v-col>
       <v-col cols="10" class="pa-2">
         <v-row justify="space-between">
           <v-card-subtitle class="pa-1">
-            {{ post.message.user.name }}
+            {{ post.user.name }}
           </v-card-subtitle>
           <v-btn icon @click="dialog = !dialog">
             <v-icon>mdi-close</v-icon>
