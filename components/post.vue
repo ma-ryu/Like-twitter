@@ -23,9 +23,12 @@
         <v-spacer></v-spacer>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn icon :color="isLike ? 'pink' : 'default'" @click="like">
-            <v-icon>mdi-heart</v-icon>
-          </v-btn>
+          <div class="like">
+            <v-btn icon :color="isLike ? 'pink' : 'default'" @click="like">
+              <v-icon>mdi-heart</v-icon>
+            </v-btn>
+            {{ liked }}
+          </div>
           <v-btn icon>
             <v-icon>mdi-repeat</v-icon>
           </v-btn>
@@ -70,6 +73,7 @@ export default {
     return {
       dialog: false,
       isLike: false,
+      liked: null,
     }
   },
   methods: {
@@ -81,7 +85,13 @@ export default {
         .delete()
     },
     like() {
-      this.isLike = !this.isLike
+      if (this.isLike === true) {
+        this.isLike = false
+        this.liked === 1 ? (this.liked = null) : this.liked--
+      } else if (this.isLike === false) {
+        this.isLike = true
+        this.liked++
+      }
     },
   },
 }
