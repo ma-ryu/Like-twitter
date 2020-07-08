@@ -74,6 +74,9 @@
         <v-tab-item>
           <post v-for="post in myPosts" :key="post.id" :post="post" />
         </v-tab-item>
+        <v-tab-item>
+          <post v-for="post in myMedia" :key="post.id" :post="post" />
+        </v-tab-item>
       </v-tabs-items>
     </v-card>
   </div>
@@ -102,6 +105,9 @@ export default {
     },
     displayName() {
       return `@${this.user.displayName}`
+    },
+    myMedia() {
+      return this.myPosts.filter((v) => v.image.name != null)
     },
   },
   mounted() {
