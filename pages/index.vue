@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO 自分だけのタイムライン -->
   <timeline :posts="posts" />
 </template>
 
