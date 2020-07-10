@@ -32,7 +32,7 @@
           <v-btn icon>
             <v-icon>mdi-repeat</v-icon>
           </v-btn>
-          <v-btn icon>
+          <v-btn icon @click="reply = !reply">
             <v-icon>mdi-comment-outline</v-icon>
           </v-btn>
         </v-card-actions>
@@ -56,6 +56,57 @@
         </v-row>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="reply" max-width="600px">
+      <v-card color="blue-grey darken-4">
+        <v-btn color="blue darken-1" icon @click="reply = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-card-title>
+          <span class="headline">REPLY</span>
+        </v-card-title>
+        <v-card-text class="px-1">
+          <v-row justify="center" class="mx-0">
+            <v-col cols="2" class="pa-2 pt-4 d-flex justify-center">
+              <v-avatar v-if="post.user.name" size="36px">
+                <v-img :src="post.user.thumbnail" contain />
+              </v-avatar>
+              <v-icon v-else>mdi-account</v-icon>
+            </v-col>
+            <v-col cols="10" class="pa-2">
+              <v-card-subtitle class="pa-2">
+                {{ post.user.name }}
+              </v-card-subtitle>
+              <v-card-text class="pa-1">{{ post.message.text }}</v-card-text>
+              <v-img v-if="post.image.src" :src="post.image.src"></v-img>
+              <v-spacer></v-spacer>
+            </v-col>
+          </v-row>
+          <v-row justify="center" class="mx-0">
+            <v-col cols="2" class="pa-2 pt-4 d-flex justify-center">
+              <v-avatar v-if="post.user.name" size="36px">
+                <v-img :src="user.photoURL" contain />
+              </v-avatar>
+            </v-col>
+            <v-col cols="10">
+              <v-textarea outlined placeholder="WARBLE YOUR REPLY"></v-textarea>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <v-card-actions>
+          <v-row class="px-10" justify="center">
+            <v-file-input
+              hide-input
+              class="mt-0 pt-0"
+              accept="image/*"
+              prepend-icon="mdi-camera"
+            />
+            <v-btn icon>
+              <v-icon>mdi-send</v-icon>
+            </v-btn>
+          </v-row>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -72,9 +123,15 @@ export default {
   data() {
     return {
       dialog: false,
+      reply: false,
       isLike: false,
       liked: null,
     }
+  },
+  computed: {
+    user() {
+      return this.$store.state.user
+    },
   },
   methods: {
     removePost(postId) {
