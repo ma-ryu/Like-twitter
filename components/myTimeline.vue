@@ -4,7 +4,6 @@
       <v-tab>WARBLES</v-tab>
       <v-tab>MEDIA</v-tab>
     </v-tabs>
-
     <v-tabs-items v-model="tab" class="timeline">
       <v-tab-item>
         <post v-for="post in posts" :key="post.id" :post="post" />

@@ -1,6 +1,5 @@
 <template>
   <!-- TODO ナビゲーションにwarble検索を追加 -->
-  <!-- TODO postをボトムナビゲーションからフローティングボタンに変更 -->
   <v-bottom-navigation dark shift fixed>
     <v-btn to="/">
       <span>HOME</span>
@@ -12,44 +11,13 @@
       <v-icon>mdi-account</v-icon>
     </v-btn>
 
-    <v-btn @click.stop="dialog = !dialog">
-      <span>POST</span>
-      <v-icon>mdi-send</v-icon>
+    <v-btn to="#">
+      <span>SEARCH</span>
+      <v-icon>mdi-magnify</v-icon>
     </v-btn>
-    <v-dialog v-model="dialog" max-width="600px">
-      <v-card color="blue-grey darken-4">
-        <v-card-title>
-          <span class="headline">Your warble</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <add-post @closeDialog="close" />
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false"
-            >Close</v-btn
-          >
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-bottom-navigation>
 </template>
 
 <script>
-import addPost from '~/components/addPost.vue'
-export default {
-  components: { addPost },
-  data() {
-    return {
-      dialog: false,
-    }
-  },
-  methods: {
-    close() {
-      this.dialog = false
-    },
-  },
-}
+export default {}
 </script>
