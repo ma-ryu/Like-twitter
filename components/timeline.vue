@@ -33,6 +33,5 @@ export default {
       items: ['All', 'Mentions'],
     }
   },
-  methods: {},
 }
 </script>

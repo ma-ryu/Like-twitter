@@ -5,7 +5,7 @@
         <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="2">
           <userNav />
         </v-col>
-        <v-col cols="12" md="6" class="px-0">
+        <v-col cols="12" md="6" class="px-0 pt-0">
           <div>
             <nuxt />
           </div>

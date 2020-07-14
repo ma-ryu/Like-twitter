@@ -11,7 +11,7 @@
       <v-icon>mdi-account</v-icon>
     </v-btn>
 
-    <v-btn to="#">
+    <v-btn to="/search">
       <span>SEARCH</span>
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
