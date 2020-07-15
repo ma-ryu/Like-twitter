@@ -4,11 +4,16 @@
   <!-- TODO warble検索 -->
   <div class="sidebar ma-3">
     <v-text-field
+      v-if="$route.name != 'search'"
+      v-model="word"
       prepend-inner-icon="mdi-magnify"
       placeholder="search twitter..."
       filled
       rounded
       dense
+      @keydown.enter="
+        $router.replace({ name: 'search', query: { word: word } })
+      "
     ></v-text-field>
     <v-card width="100%" class="mx-auto mb-3">
       <v-list rounded>
@@ -56,6 +61,7 @@ export default {
         { text: 'Bookmarks', icon: 'mdi-bookmark' },
         { text: 'Messages', icon: 'mdi-email' },
       ],
+      word: null,
     }
   },
 }

@@ -102,6 +102,7 @@ export default {
       items: [
         { text: 'HOME', icon: 'mdi-home', to: '/' },
         { text: 'Profile', icon: 'mdi-account', to: '/account' },
+        { text: 'Search', icon: 'mdi-magnify', to: '/search' },
       ],
       dialog: false,
     }

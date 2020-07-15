@@ -1,6 +1,6 @@
 <template>
   <v-card class="pa-5">
-    <addPost v-if="$vuetify.breakpoint.mdAndUp" />
+    <addPost v-if="$vuetify.breakpoint.mdAndUp && $route.name != 'search'" />
     <v-card-title>Notifications</v-card-title>
     <v-tabs v-model="tab" background-color="transparent" grow>
       <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>

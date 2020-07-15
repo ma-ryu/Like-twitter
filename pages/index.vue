@@ -12,6 +12,16 @@ export default {
       posts: [],
     }
   },
+  computed: {
+    searchPosts() {
+      return this.posts.filter((value) => {
+        const result = value.message.text.indexOf(this.word)
+        if (result !== -1) {
+          return value
+        }
+      })
+    },
+  },
   mounted() {
     db.collection('posts')
       .doc('6jdKyY5AvuUy2SsRPPzX')

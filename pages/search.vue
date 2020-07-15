@@ -1,7 +1,8 @@
 <template>
   <div>
-    <toolbar v-model="word" />
+    <toolbar v-model="word" :word="word" />
     <timeline :posts="searchPosts" @input="value = $event" />
+    {{ this.$route.query.word }}
   </div>
 </template>
 <script>
@@ -13,15 +14,15 @@ export default {
   data() {
     return {
       posts: [],
-      word: null,
+      word: this.$route.query.word,
     }
   },
   computed: {
     searchPosts() {
-      return this.posts.filter((v) => {
-        const result = v.message.text.indexOf(this.word)
+      return this.posts.filter((value) => {
+        const result = value.message.text.indexOf(this.word)
         if (result !== -1) {
-          return v
+          return value
         }
       })
     },
