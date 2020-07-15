@@ -2,7 +2,6 @@
   <div>
     <toolbar v-model="word" :word="word" />
     <timeline :posts="searchPosts" @input="value = $event" />
-    {{ this.$route.query.word }}
   </div>
 </template>
 <script>
