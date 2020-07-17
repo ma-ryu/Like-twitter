@@ -1,8 +1,14 @@
 <template>
   <div>
     <v-tabs v-model="tab" background-color="transparent" grow>
-      <v-tab>WARBLES</v-tab>
-      <v-tab>MEDIA</v-tab>
+      <v-tab>
+        WARBLES
+        <span class="ml-2">{{ `${posts.length}件` }}</span>
+      </v-tab>
+      <v-tab>
+        MEDIA
+        <span class="ml-2">{{ `${myMedia.length}件` }}</span>
+      </v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab" class="timeline">
       <v-tab-item>
