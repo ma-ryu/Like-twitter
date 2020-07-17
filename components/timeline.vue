@@ -3,7 +3,10 @@
     <addPost v-if="$vuetify.breakpoint.mdAndUp && $route.name != 'search'" />
     <v-card-title>Notifications</v-card-title>
     <v-tabs v-model="tab" background-color="transparent" grow>
-      <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
+      <v-tab v-for="item in items" :key="item">
+        {{ item }}
+        <span class="ml-2">{{ `${posts.length}件` }}</span>
+      </v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="tab" class="timeline">
