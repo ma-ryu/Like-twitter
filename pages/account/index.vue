@@ -55,7 +55,10 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-card-text class="pa-2">{{ profile.myIntro }}</v-card-text>
+      <v-card-text v-if="profile.myIntro" class="pa-2">
+        {{ profile.myIntro }}
+      </v-card-text>
+      <v-card-text v-else class="pa-2">{{ example }}</v-card-text>
       <v-card-actions>
         <v-btn text x-small class="text-capitalize">
           {{ following }} <span class="grey--text ml-1">Following</span>
@@ -78,7 +81,8 @@ export default {
     return {
       myPosts: [],
       dialog: false,
-      profile: null,
+      example: '自己紹介を記載してください',
+      profile: '',
       isFollow: false,
       follow: 'Follow',
       following: 1000,
@@ -118,7 +122,7 @@ export default {
         if (!doc.exists) {
           console.log('No such document!')
         } else {
-          console.log('Document data:', doc.data().myIntro)
+          console.log('Document data:', doc.data())
           this.profile = doc.data()
         }
       })
@@ -136,7 +140,7 @@ export default {
       }
     },
     async changeMyIntro() {
-      const contents = this.profile
+      const contents = this.profile.myIntro
       await this.$store.dispatch('changeMyIntro', contents)
       this.dialog = false
       console.log('finish')

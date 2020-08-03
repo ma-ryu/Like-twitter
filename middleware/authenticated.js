@@ -5,11 +5,10 @@ export default function ({ route, store, redirect }) {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       store.dispatch('setUser', user)
-      db.collection('profiles').doc(user.uid).set({
+      db.collection('profiles').doc(user.uid).update({
         uid: user.uid,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        myIntro: '',
       })
     } else if (route.path !== '/login') redirect('/login')
   })
