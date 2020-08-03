@@ -9,6 +9,7 @@ export default function ({ route, store, redirect }) {
         uid: user.uid,
         displayName: user.displayName,
         photoURL: user.photoURL,
+        myIntro: '',
       })
     } else if (route.path !== '/login') redirect('/login')
   })

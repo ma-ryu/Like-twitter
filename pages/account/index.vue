@@ -42,17 +42,20 @@
             <span class="headline">EDIT PROFILE</span>
           </v-card-title>
           <v-card-text>
-            <v-textarea v-model="profile" outlined></v-textarea>
+            <v-textarea v-model="profile.myIntro" outlined></v-textarea>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" text @click="changeMyIntro">
+              save
+            </v-btn>
             <v-btn color="blue darken-1" text @click="dialog = false">
               Close
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-card-text v-model="profile" class="pa-2">{{ profile }}</v-card-text>
+      <v-card-text class="pa-2">{{ profile.myIntro }}</v-card-text>
       <v-card-actions>
         <v-btn text x-small class="text-capitalize">
           {{ following }} <span class="grey--text ml-1">Following</span>
@@ -75,8 +78,7 @@ export default {
     return {
       myPosts: [],
       dialog: false,
-      profile:
-        'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem quaeexercitationem suscipit! Illum delectus iure accusantium vel remdoloremenim.',
+      profile: null,
       isFollow: false,
       follow: 'Follow',
       following: 1000,
@@ -109,6 +111,20 @@ export default {
         // eslint-disable-next-line no-console
         console.log(this.myPosts)
       })
+    const profileRef = db.collection('profiles').doc(this.user.uid)
+    profileRef
+      .get()
+      .then((doc) => {
+        if (!doc.exists) {
+          console.log('No such document!')
+        } else {
+          console.log('Document data:', doc.data().myIntro)
+          this.profile = doc.data()
+        }
+      })
+      .catch((err) => {
+        console.log('Error getting document', err)
+      })
   },
   methods: {
     followUser() {
@@ -118,6 +134,12 @@ export default {
       } else {
         this.follow = 'Follow'
       }
+    },
+    async changeMyIntro() {
+      const contents = this.profile
+      await this.$store.dispatch('changeMyIntro', contents)
+      this.dialog = false
+      console.log('finish')
     },
   },
 }

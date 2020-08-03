@@ -5,7 +5,7 @@
         <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="2">
           <userNav />
         </v-col>
-        <v-col cols="12" md="6" class="px-0 pt-0">
+        <v-col cols="12" md="6" class="px-0">
           <div>
             <nuxt />
           </div>
@@ -44,8 +44,8 @@
       </v-dialog>
       <bottomNav v-if="$vuetify.breakpoint.smAndDown" />
     </main>
-    <v-footer absolute app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+    <v-footer class="text-center">
+      <span class="mx-auto">&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>

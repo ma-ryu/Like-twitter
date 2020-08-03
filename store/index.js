@@ -22,6 +22,14 @@ export const actions = {
   setUser(context, user) {
     context.commit('setUser', user)
   },
+  async changeMyIntro(context, payload) {
+    console.log(this.state.user.uid)
+    const contents = payload
+    await db
+      .collection('profiles')
+      .doc(this.state.user.uid)
+      .update({ myIntro: contents })
+  },
   async addPost(context, payload) {
     const contents = payload
     const loadImage = await context.dispatch('uploadImage', {
