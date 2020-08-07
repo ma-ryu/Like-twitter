@@ -24,11 +24,14 @@ export const actions = {
   },
   async addMyFavorite(context, payload) {
     const contents = payload
-    await db
+    const favoriteRef = db
       .collection('profiles')
       .doc(this.state.user.uid)
       .collection('favorite')
-      .add({ contents })
+      .doc(contents.id)
+    if (favoriteRef.id !== contents.id) {
+      return false
+    } else await favoriteRef.set(contents)
   },
   async changeMyIntro(context, payload) {
     console.log(this.state.user.uid)

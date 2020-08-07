@@ -66,6 +66,9 @@
         <v-btn text x-small class="text-capitalize">
           {{ follower }} <span class="grey--text ml-1">Followers</span>
         </v-btn>
+        <v-btn text x-small class="text-capitalize">
+          {{ favorite }} <span class="grey--text ml-1">Favorite</span>
+        </v-btn>
       </v-card-actions>
       <myTimeline :posts="myPosts" />
     </v-card>
