@@ -142,13 +142,14 @@ export default {
         .doc(postId)
         .delete()
     },
-    like() {
+    async like() {
       if (this.isLike === true) {
         this.isLike = false
         this.liked === 1 ? (this.liked = null) : this.liked--
       } else if (this.isLike === false) {
         this.isLike = true
         this.liked++
+        await this.$store.dispatch('addMyFavorite', this.post)
       }
     },
   },
