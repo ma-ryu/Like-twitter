@@ -19,14 +19,14 @@
           <v-avatar size="96" class="position">
             <v-img :src="user.photoURL"></v-img>
           </v-avatar>
-          <!-- <v-btn
+          <v-btn
             rounded
             class="mr-5"
             :color="isFollow ? 'primary' : 'default'"
             @click="followUser"
           >
             {{ follow }}
-          </v-btn> -->
+          </v-btn>
           <v-btn outlined small class="mr-5" @click="dialog = !dialog">
             EDIT PROFILE
           </v-btn>
@@ -90,6 +90,7 @@ export default {
       follow: 'Follow',
       following: 1000,
       follower: 1200,
+      favorite: 0,
     }
   },
   computed: {

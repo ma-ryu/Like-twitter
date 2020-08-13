@@ -55,6 +55,22 @@ export const actions = {
       .collection('post')
     await postsRef.add(contents)
   },
+  async addReply(context, payload) {
+    const contents = payload
+    const loadImage = await context.dispatch('uploadImage', {
+      file: contents.image.file,
+      name: contents.image.name,
+    })
+    contents.image = loadImage
+
+    const replyRef = db
+      .collection('posts')
+      .doc('6jdKyY5AvuUy2SsRPPzX')
+      .collection('post')
+      .doc(contents.id)
+      .collection('reply')
+    await replyRef.add(contents)
+  },
   uploadImage(context, payload) {
     if (!payload.file) {
       return {
