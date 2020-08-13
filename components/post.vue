@@ -33,6 +33,7 @@
           </v-btn>
           <v-btn icon @click="reply = !reply">
             <v-icon>mdi-comment-outline</v-icon>
+            <span v-if="rep.length > 0">{{ rep.length }}</span>
           </v-btn>
         </v-card-actions>
       </v-col>
@@ -78,6 +79,7 @@ export default {
   },
   data() {
     return {
+      rep: [],
       dialog: false,
       reply: false,
       isLike: false,
@@ -88,6 +90,27 @@ export default {
     user() {
       return this.$store.state.user
     },
+  },
+  mounted() {
+    db.collection('posts')
+      .doc('6jdKyY5AvuUy2SsRPPzX')
+      .collection('post')
+      .doc(this.post.id)
+      .collection('reply')
+      .orderBy('createdAt')
+      .onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          const doc = change.doc
+          if (change.type === 'added') {
+            this.rep.unshift({ id: doc.id, ...doc.data() })
+          }
+          if (change.type === 'removed') {
+            this.rep.splice(doc.id, 1)
+          }
+        })
+        // eslint-disable-next-line no-console
+        console.log(this.posts)
+      })
   },
   methods: {
     removePost(postId) {
