@@ -112,9 +112,6 @@ export default {
         console.log(this.posts)
       })
   },
-  created() {
-    this.$parent.rep = this.rep
-  },
   methods: {
     removePost(postId) {
       db.collection('posts')
