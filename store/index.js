@@ -55,8 +55,8 @@ export const actions = {
       .collection('post')
     await postsRef.add(contents)
   },
-  async addReply(context, payload) {
-    const contents = payload
+  async addReply(context, { value, docId }) {
+    const contents = value
     const loadImage = await context.dispatch('uploadImage', {
       file: contents.image.file,
       name: contents.image.name,
@@ -67,7 +67,7 @@ export const actions = {
       .collection('posts')
       .doc('6jdKyY5AvuUy2SsRPPzX')
       .collection('post')
-      .doc(contents.id)
+      .doc(docId)
       .collection('reply')
     await replyRef.add(contents)
   },

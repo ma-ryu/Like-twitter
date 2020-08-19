@@ -104,8 +104,8 @@ export default {
       }
     },
     async addReply() {
+      const id = this.post.id
       const contents = {
-        id: this.post.id,
         user: {
           id: this.user.uid,
           name: this.user.displayName,
@@ -120,10 +120,12 @@ export default {
           name: this.fileName,
         },
       }
-      await this.$store.dispatch('addReply', contents).then(() => {
-        this.newReply = null
-        this.$emit('closeDialog')
-      })
+      await this.$store
+        .dispatch('addReply', { value: contents, docId: id })
+        .then(() => {
+          this.newReply = null
+          this.$emit('closeDialog')
+        })
       console.log('finish')
     },
   },

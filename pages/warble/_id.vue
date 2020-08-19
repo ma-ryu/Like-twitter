@@ -48,7 +48,6 @@ export default {
           const doc = change.doc
           if (change.type === 'added') {
             this.posts.unshift({ id: doc.id, ...doc.data() })
-            console.log(this.posts)
           }
           if (change.type === 'removed') {
             this.posts.splice(doc.id, 1)
