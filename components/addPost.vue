@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       newPost: '',
+      link: '',
       file: null,
       fileName: '',
       previewImageUrl: '',
@@ -70,6 +71,14 @@ export default {
       }
     },
     async addPost() {
+      const pat = /(https?:\/\/[\x21-\x7E]+)/g
+      const makeLink = function (url) {
+        return `<a href=${url} target="_blank">${url}</a>`
+      }
+      if (this.newPost.match(pat)) {
+        console.log(this.newPost.match(pat))
+        this.newPost = this.newPost.replace(pat, makeLink)
+      }
       const contents = {
         user: {
           id: this.user.uid,

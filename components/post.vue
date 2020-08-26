@@ -1,8 +1,9 @@
+/* eslint-disable vue/no-v-html */
 <template>
   <!--  TODO リプライ機能をつける -->
   <!--  TODO コンポーネント切り分け -->
   <!--  TODO 処理をストアに移動 -->
-  <v-card v-if="post.id" :to="`/warble/${post.id}`">
+  <v-card>
     <v-row justify="center" class="mx-0">
       <v-col cols="2" class="pa-2 pt-4 d-flex justify-center">
         <v-avatar v-if="post.user.name" size="48px">
@@ -17,10 +18,13 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-row>
-        <v-card-text class="pa-1">{{ post.message.text }}</v-card-text>
+        <div class="pa-1 white-space" v-html="$sanitize(post.message.text)" />
         <v-img v-if="post.image.src" :src="post.image.src"></v-img>
         <v-spacer></v-spacer>
         <v-card-actions>
+          <v-btn v-if="post.id" :to="`/warble/${post.id}`" text>
+            MORE
+          </v-btn>
           <v-spacer></v-spacer>
           <div class="like">
             <v-btn icon :color="isLike ? 'pink' : 'default'" @click="like">
@@ -139,3 +143,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.white-space {
+  white-space: pre-wrap;
+}
+</style>
