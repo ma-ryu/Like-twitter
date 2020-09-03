@@ -116,8 +116,6 @@ export default {
             this.myPosts.splice(doc.id, 1)
           }
         })
-        // eslint-disable-next-line no-console
-        console.log(this.myPosts)
       })
     const profileRef = db.collection('profiles').doc(this.user.uid)
     profileRef
@@ -126,7 +124,6 @@ export default {
         if (!doc.exists) {
           console.log('No such document!')
         } else {
-          console.log('Document data:', doc.data())
           this.profile = doc.data()
         }
       })

@@ -76,7 +76,6 @@ export default {
         return `<a href=${url} target="_blank">${url}</a>`
       }
       if (this.newPost.match(pat)) {
-        console.log(this.newPost.match(pat))
         this.newPost = this.newPost.replace(pat, makeLink)
       }
       const contents = {
