@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <main>
+    <v-container class="pt-0">
       <v-row justify="center">
         <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="2">
           <userNav />
@@ -43,7 +43,7 @@
         </v-card>
       </v-dialog>
       <bottomNav v-if="$vuetify.breakpoint.smAndDown" />
-    </main>
+    </v-container>
     <v-footer class="text-center">
       <span class="mx-auto">&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>

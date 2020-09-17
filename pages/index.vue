@@ -1,5 +1,7 @@
 <template>
-  <timeline :posts="posts" />
+  <v-card>
+    <timeline :posts="posts" />
+  </v-card>
 </template>
 
 <script>

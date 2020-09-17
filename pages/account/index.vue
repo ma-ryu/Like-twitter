@@ -12,28 +12,27 @@
 
       <v-spacer></v-spacer>
     </v-toolbar>
-    <v-card class="pa-5">
-      <div>
-        <v-img src="https://picsum.photos/400/200"></v-img>
-        <v-row justify="space-between" class="my-3">
-          <v-avatar size="96" class="position">
-            <v-img :src="user.photoURL"></v-img>
-          </v-avatar>
-          <v-btn
-            rounded
-            class="mr-5"
-            :color="isFollow ? 'primary' : 'default'"
-            @click="followUser"
-          >
-            {{ follow }}
-          </v-btn>
-          <v-btn outlined small class="mr-5" @click="dialog = !dialog">
-            EDIT PROFILE
-          </v-btn>
-        </v-row>
-      </div>
+    <v-card>
+      <v-img src="https://picsum.photos/400/200"></v-img>
+      <v-row justify="space-between" no-gutters class="pa-3">
+        <v-avatar size="80" class="position">
+          <v-img :src="user.photoURL"></v-img>
+        </v-avatar>
+        <v-btn
+          rounded
+          small
+          class="mr-5"
+          :color="isFollow ? 'primary' : 'default'"
+          @click="followUser"
+        >
+          {{ follow }}
+        </v-btn>
+        <v-btn outlined small class="mr-5" @click="dialog = !dialog">
+          EDIT PROFILE
+        </v-btn>
+      </v-row>
 
-      <v-row justify="space-between" class="pa-5">
+      <v-row justify="space-between" no-gutters class="pa-5">
         {{ displayName }}
       </v-row>
       <v-dialog v-model="dialog" max-width="600px">
@@ -154,6 +153,6 @@ export default {
 .position {
   z-index: 99;
   margin-top: -60px;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 </style>

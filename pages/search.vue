@@ -1,7 +1,16 @@
 <template>
   <div>
     <toolbar v-model="word" :word="word" />
-    <timeline :posts="searchPosts" @input="value = $event" />
+    <timeline
+      v-if="searchPosts === 0"
+      :posts="searchPosts"
+      @input="value = $event"
+    />
+    <v-card v-else>
+      <v-card-title>
+        検索キーワードを入力してください
+      </v-card-title>
+    </v-card>
   </div>
 </template>
 <script>

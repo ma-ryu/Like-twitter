@@ -3,7 +3,7 @@
   <!--  TODO リプライ機能をつける -->
   <!--  TODO コンポーネント切り分け -->
   <!--  TODO 処理をストアに移動 -->
-  <v-card>
+  <div>
     <v-row justify="center" no-gutters class="px-2">
       <v-col cols="2">
         <v-avatar v-if="post.user.name" size="40px" class="d-flex mx-auto mt-5">
@@ -66,7 +66,7 @@
         <add-reply :dialog="reply" :post="post" @closeDialog="close" />
       </v-card>
     </v-dialog>
-  </v-card>
+  </div>
 </template>
 
 <script>
