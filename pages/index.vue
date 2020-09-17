@@ -1,6 +1,18 @@
 <template>
   <v-card>
     <timeline :posts="posts" />
+    <v-btn
+      v-if="$vuetify.breakpoint.smAndDown"
+      absolute
+      dark
+      fab
+      botttom
+      right
+      color="primary"
+      @click="dialog = !dialog"
+    >
+      <v-icon>mdi-send</v-icon>
+    </v-btn>
   </v-card>
 </template>
 

@@ -2,7 +2,7 @@
   <div>
     <toolbar v-model="word" :word="word" />
     <timeline
-      v-if="searchPosts === 0"
+      v-if="searchPosts != 0"
       :posts="searchPosts"
       @input="value = $event"
     />

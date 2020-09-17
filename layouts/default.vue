@@ -1,8 +1,8 @@
 <template>
   <v-app dark>
-    <v-container class="pt-0">
+    <v-container class="pt-0 main">
       <v-row justify="center">
-        <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="2">
+        <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="3">
           <userNav />
         </v-col>
         <v-col cols="12" md="6" class="pa-0">
@@ -16,8 +16,11 @@
       </v-row>
       <v-btn
         v-if="$vuetify.breakpoint.smAndDown"
+        fixed
         dark
         fab
+        botttom
+        right
         color="primary"
         class="fab"
         @click="dialog = !dialog"
@@ -78,8 +81,6 @@ main {
   overflow: scroll;
 }
 .fab {
-  position: absolute;
-  bottom: 10%;
-  left: 80%;
+  bottom: 70px;
 }
 </style>
