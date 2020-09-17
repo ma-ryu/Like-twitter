@@ -9,12 +9,7 @@
 
       <v-spacer></v-spacer>
     </v-toolbar>
-    <post
-      v-for="post in displayPost"
-      :key="post.id"
-      :post="post"
-      class="mb-5"
-    />
+    <post v-for="post in displayPost" :key="post.id" :post="post" />
     <div v-for="re in rep" :key="re.index">
       <rep :post="re" />
     </div>

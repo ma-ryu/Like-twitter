@@ -4,9 +4,9 @@
   <!--  TODO コンポーネント切り分け -->
   <!--  TODO 処理をストアに移動 -->
   <v-card>
-    <v-row justify="center" class="mx-0">
-      <v-col cols="2" class="pa-2 pt-4 d-flex justify-center">
-        <v-avatar v-if="post.user.name" size="48px">
+    <v-row justify="center" no-gutters class="px-2">
+      <v-col cols="2">
+        <v-avatar v-if="post.user.name" size="40px" class="d-flex mx-auto mt-5">
           <v-img :src="post.user.thumbnail" contain />
         </v-avatar>
         <v-icon v-else>mdi-account</v-icon>
@@ -14,7 +14,7 @@
       <v-col cols="10" class="pa-2">
         <v-row justify="space-between">
           <v-card-subtitle class="pa-1">{{ post.user.name }}</v-card-subtitle>
-          <v-btn icon @click="dialog = !dialog">
+          <v-btn icon class="mr-3" @click="dialog = !dialog">
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-row>

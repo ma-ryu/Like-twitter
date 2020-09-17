@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-5">
+  <div>
     <addPost v-if="$vuetify.breakpoint.mdAndUp && $route.name != 'search'" />
     <v-card-title>Notifications</v-card-title>
     <v-tabs v-model="tab" background-color="transparent" grow>
@@ -14,7 +14,7 @@
         <post v-for="post in posts" :key="post.id" :post="post" />
       </v-tab-item>
     </v-tabs-items>
-  </v-card>
+  </div>
 </template>
 
 <script>
